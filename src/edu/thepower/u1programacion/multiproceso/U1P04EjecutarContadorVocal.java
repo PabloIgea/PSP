@@ -1,6 +1,8 @@
 package edu.thepower.u1programacion.multiproceso;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class U1P04EjecutarContadorVocal {
 
@@ -15,6 +17,7 @@ public class U1P04EjecutarContadorVocal {
 
     public static void main(String[] args) {
 
+        List<Process> procesos = new ArrayList<>();
         //Creacion directorio Salida
         File directorioSalida = new File("salida");
         if (directorioSalida.mkdir())
@@ -23,12 +26,13 @@ public class U1P04EjecutarContadorVocal {
             System.err.println("El directorio de salida ya existe, melón");
 
 
+
         for (int i = 0; i < VOCALES.length; i++) {
             ProcessBuilder pb = new ProcessBuilder(JAVA, CP, CLASSPATH, CLASE, VOCALES[i], ARCHIVO);
             pb.redirectOutput(new File(SALIDA + VOCALES[i] + EXTENSION));
             pb.redirectError(ProcessBuilder.Redirect.INHERIT);
             try {
-                pb.start();
+                procesos.add(pb.start());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -36,8 +40,15 @@ public class U1P04EjecutarContadorVocal {
 
         System.out.println("Finalizado el conteo de vocales.");
 
-        //Mostrar por consola el numero total de cad vocal y aparte sumar el total de vocales y mostrarlo
+        for (Process proceso : procesos) {
+            try {
+                proceso.waitFor();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
+        }
+        //Mostrar por consola el numero total de cad vocal y aparte sumar el total de vocales y mostrarlo
         int acumulador = 0;
         for(int i = 0;i < VOCALES.length; i++) {
 
@@ -58,11 +69,9 @@ public class U1P04EjecutarContadorVocal {
                     throw new RuntimeException(e);
                 }
             }
-
-            System.out.println("El total de vocales es: " + acumulador);
-
         }
 
+        System.out.println("El total de vocales es: " + acumulador);
 
 
     }

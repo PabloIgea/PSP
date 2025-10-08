@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class U1P04ContadorVocal {
@@ -19,6 +20,8 @@ public class U1P04ContadorVocal {
         VOCALES.put('o','ó');
         VOCALES.put('u','ú');
     }
+
+
 
     private void contarVocal(char vocal, String archivo) {
 
@@ -52,6 +55,7 @@ public class U1P04ContadorVocal {
 
 
     public static void main(String[] args) {
+
 
         U1P04ContadorVocal test = new U1P04ContadorVocal();
 
