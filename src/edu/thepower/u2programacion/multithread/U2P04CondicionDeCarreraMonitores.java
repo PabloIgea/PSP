@@ -10,21 +10,21 @@ public class U2P04CondicionDeCarreraMonitores {
     // cuyo acceso concurrente queremos proteger.
     private static int contador = 0;
 
-    // Método estático y sincronizado para modificar el contador:
+    // Metodo estático y sincronizado para modificar el contador:
     // 'num' es el valor a sumar o restar al contador, según el hilo lo invoque con un valor positivo o negativo.
-    // La sincronización en el método asegura que sólo un hilo pueda ejecutar este método a la vez,
+    // La sincronización en el metodo asegura que sólo un hilo pueda ejecutar este metodo a la vez,
     // lo que previene inconsistencias causadas por accesos concurrentes ("condición de carrera").
     public static synchronized void incrementarContador(int num) {
         contador += num;
     }
 
-    // Método estático y sincronizado para leer el valor actual de 'contador':
+    // Metodo estático y sincronizado para leer el valor actual de 'contador':
     // Permite obtener el valor compartido de forma segura, evitando leer durante una modificación concurrente.
     public static synchronized int getContador() {
         return contador;
     }
 
-    // Método principal que inicia los hilos y gestiona la ejecución del programa:
+    // Metodo principal que inicia los hilos y gestiona la ejecución del programa:
     public static void main(String[] args) {
 
         // Constante que define el número total de iteraciones para cada hilo.

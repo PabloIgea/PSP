@@ -27,9 +27,9 @@ class CuentaCorriente {
         return saldo;
     }
 
-    // Método para retirar dinero de la cuenta.
+    // Metodo para retirar dinero de la cuenta.
     // Aquí se hace una comprobación muy sencilla de fondos.
-    // IMPORTANTE: este método por sí solo NO es thread-safe; por eso
+    // IMPORTANTE: este metodo por sí solo NO es thread-safe; por eso
     // la clase que transfiere hace el synchronized externo.
     public void retirarSaldo(float importe) {
         if (saldo > importe) {   // Solo retira si hay suficiente saldo.
