@@ -1,14 +1,14 @@
-package edu.thepower.u3comunicacionEnRed;
+package edu.thepower.u4serviciosEnRed;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class U302EchoClient {
+public class U3P02EchoClient {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         // Creamos el socket para establecer la comunicación
-        try(Socket socket = new Socket("localhost", 2777)){
+        try(Socket socket = new Socket("localhost", 2408)){
             OutputStream os = socket.getOutputStream();
             PrintWriter pw = new PrintWriter(os, true);
             InputStream is = socket.getInputStream();
